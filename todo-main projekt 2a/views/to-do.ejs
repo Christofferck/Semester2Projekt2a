@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="./public/to-do.css">
+
+<h1>To do</h1>
+
+<section>
+  <article class="create">
+    <h2>Create new to-do</h2>
+    <form action="to-do" method="POST">
+      <div>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+          />
+      </div>
+      <div>
+          <label for="text">Text</label>
+          <textarea name="text" rows="4" cols="50">
+
+          </textarea>
+      </div>
+      <div>
+          <label for="startdate">Start date</label>
+          <input
+            type="date"
+            name="startdate"
+          />
+      </div>
+      <div>
+          <label for="deadline">Deadline</label>
+          <input
+            type="date"
+            name="deadline"
+          />
+      </div>
+      <div>
+        <label for="priority">Priority</label>
+        <select id="priority" name="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <br><br><br>
+      <input type="hidden" name="formInstance" value="create" />
+      <button type="submit" class="btn btn-primary btn-block">
+        Save
+      </button>
+    </form>
+  </article>
+  <article>
+    <div class="wrap">
+      <h2>Active To-do's</h2>
+      <div id="toDoWrap">
+          <%var i = 0; %>
+          <% todos.forEach(todo => { %>
+              <div class="toDo" id="todo<%=i %>">
+
+                <div class="title">
+                  <span class="property">Title:</span>
+                  <span class="value"><%= todo.title%></span>
+                </div>
+
+                <div class="text">
+                  <span class="property">Text:</span>
+                  <span class="value"><%= todo.text  %></span>
+                </div>
+
+                <div class="startdate">
+                  <span class="property">Startdate:</span>
+                  <span class="value"><%= todo.startdate.toDateString()%></span>
+                </div>
+
+                <div class="deadline">
+                  <span class="property">Deadline:</span>
+                  <span class="value"><%= todo.deadline.toDateString()  %></span>
+                </div>
+
+                <div class="priority">
+                  <span class="property">Priority:</span>
+                  <span class="value"><%= todo.priority  %></span>
+                </div>
+
+                <div class="hidden">
+                  <span class="property">Id:</span>
+                  <span class="value"><%= todo._id  %></span>
+                </div>
+
+                <div id="btns<%=i %>" class="btns">
+                  <button id="editBtn<%=i %>" type="button" name="edit">Edit</button>
+                  <button id="delBtn<%=i %>"type="button" name="archive">Archive</button>
+                </div>
+                <%i++ %>
+              </div>
+
+          <% }) %>
+      </div>
+    </div>
+    <div class="wrap">
+        <h2>Archived To-do's</h2>
+        <div>
+          <% todoArchived.forEach(todo => { %>
+              <div class="toDo">
+
+                <div class="title">
+                  <span class="property">Title:</span>
+                  <span class="value"><%= todo.title%></span>
+                </div>
+
+                <div class="text">
+                  <span class="property">Text:</span>
+                  <span class="value"><%= todo.text  %></span>
+                </div>
+
+                <div class="startdate">
+                  <span class="property">Startdate:</span>
+                  <span class="value"><%= todo.startdate.toDateString()%></span>
+                </div>
+
+                <div class="deadline">
+                  <span class="property">Deadline:</span>
+                  <span class="value"><%= todo.deadline.toDateString()  %></span>
+                </div>
+
+                <div class="priority">
+                  <span class="property">Priority:</span>
+                  <span class="value"><%= todo.priority  %></span>
+                </div>
+              </div>
+            <% }) %>
+        </div>
+    </div>
+
+
+
+
+
+  </article>
+
+</section>
+
+
+<script src="../public/javascript/to-do.js"></script>

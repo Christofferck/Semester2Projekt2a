@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="./public/admin.css">
+
+<h1>Admin Page</h1>
+<section>
+  <div>
+    <h2>Pending user registration requests</h2>
+      <% users.forEach(function(user, i) { %>
+          <div>Name: <%= user.name  %></div>
+          <div>Email: <%= user.email %></div>
+          <div>Role: <%= user.role %> </div>
+          <div>
+          <br>
+          <form action="admin" method="POST">
+          <div>
+              <input type="hidden" name="choice" value="accept">
+              <input type="hidden" name="email" value="<%= user.email %>">
+          </div>
+            <input type="hidden" name="formInstance" value="pendingUser" />
+            <button type="submit" class="btn btn-primary btn-block">Accept User</button>
+          </form>
+
+          <form action="admin" method="POST">
+          <div>
+              <input type="hidden" name="choice" value="decline">
+              <input type="hidden" name="email" value="<%= user.email %>">
+          </div>
+            <input type="hidden" name="formInstance" value="pendingUser" />
+            <button type="submit" class="btn btn-primary btn-block">Decline User</button>
+          </form>
+          <% }) %>
+          </div>
+    </div>
+    <div>
+      <h2>Change user role</h2>
+      <form id="role" action="admin" method="POST">
+        <div class="roleInput">
+          <div>
+            <label for="role">Enter email for user</label>
+            <input type="text" name="email">
+          </div>
+          <div>
+            <label for="userRole">Choose role</label>
+            <select id="userRole" name="userRole">
+              <option value="basic">Basic</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" name="formInstance" value="userRole" />
+        <button type="submit">Change role</button>
+      </form>
+
+
+    </div>
+</section>
